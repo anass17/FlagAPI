@@ -9,6 +9,5 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 
-Route::post('/register', [AuthController::class, 'register'])
-// ->middleware('auth:sanctum')
-;
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
