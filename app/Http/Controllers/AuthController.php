@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -31,10 +32,38 @@ class AuthController extends Controller
         $user -> password = HASH::make($request -> password);
         $user -> save();
 
-        return response()->json(['message' => 'User Successfully Registrered'], 201);
+        $token = $user->createToken('FlagAPI')->plainTextToken;
+
+        return response()->json([
+            'message' => 'User Successfully Registrered',
+            'token' => $token,
+            'user' => [
+                    'id' => $user -> id,
+                    'first_name' => $user -> first_name,
+                    'last_name' => $user -> last_name,
+                    'email' => $user -> email,
+                ],
+            ], 201);
     }
 
-    public function hello() {
-        return response()->json(['message' => 'Great!'], 201);
+    public function login(Request $request) {
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            
+            $token = $user->createToken('FlagAPI')->plainTextToken;
+
+            return response()->json([
+                'token' => $token,
+                'user' => [
+                    'id' => $user -> id,
+                    'first_name' => $user -> first_name,
+                    'last_name' => $user -> last_name,
+                    'email' => $user -> email,
+                ],
+            ], 200);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }
