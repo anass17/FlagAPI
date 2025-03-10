@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -53,6 +54,8 @@ class AuthController extends Controller
             
             $token = $user->createToken('FlagAPI')->plainTextToken;
 
+            // Session::put('session_user_id', $user->id);
+
             return response()->json([
                 'token' => $token,
                 'user' => [
@@ -65,5 +68,14 @@ class AuthController extends Controller
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    public function logout(Request $request) {
+
+        $user = User::where('id', $request->id)->first();
+
+        $user->tokens->last()->delete();
+
+        return response()->json(['message' => 'Logged out successfully'], 200);
     }
 }
