@@ -21,4 +21,4 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 
 // Country Routes
 
-Route::resource('countries', CountryController::class);
+Route::resource('countries', CountryController::class)->middleware('auth:sanctum');
