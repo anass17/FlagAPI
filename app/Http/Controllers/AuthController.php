@@ -55,6 +55,7 @@ class AuthController extends Controller
             $token = $user->createToken('FlagAPI')->plainTextToken;
 
             return response()->json([
+                'message' => 'Successfully logged in',
                 'token' => $token,
                 'user' => [
                     'id' => $user -> id,
@@ -65,15 +66,13 @@ class AuthController extends Controller
             ], 200);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
 
     public function logout(Request $request) {
 
-        $user = User::where('id', $request->id)->first();
+        $request->user()->currentAccessToken()->delete();
 
-        $user->tokens->last()->delete();
-
-        return response()->json(['message' => 'Logged out successfully'], 200);
+        return response()->json(["message "=>"User successfully logged out"], 200);
     }
 }
