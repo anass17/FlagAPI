@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "675376fb-2e45-48d9-9b4c-bccb40000f57",
+		"name": "FlagAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42980289"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "YOUR_FIRST_NAME",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "YOUR_LAST_NAME",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "YOUR_EMAIL",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_PASSWORD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "YOUR_EMAIL",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "YOUR_PASSWORD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users - id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/users/{$id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"{$id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List countries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/countries",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add countries",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "COUNTRY_NAME",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "capitale",
+							"value": "COUNTRY_CAPITALE",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "population",
+							"value": "COUNTRY_POPULATION",
+							"description": "Required, integer",
+							"type": "text"
+						},
+						{
+							"key": "flag",
+							"description": "Required, image: png, jpg, webp",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "region",
+							"value": "CONTINENT_NAME",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "COUNTRY_MAIN_LANGUAGE",
+							"description": "Required",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/countries",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single country",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/countries/{$id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries",
+						"{$id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update country",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "COUNTRY_NAME",
+							"description": "optional",
+							"type": "text"
+						},
+						{
+							"key": "population",
+							"value": "COUNTRY_POPULATION",
+							"description": "optional, integer",
+							"type": "text"
+						},
+						{
+							"key": "capitale",
+							"value": "COUNTRY_CAPITALE",
+							"description": "optional",
+							"type": "text"
+						},
+						{
+							"key": "region",
+							"value": "CONTINENT_NAME",
+							"description": "optional",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "COUNTRY_MAIN_LANGUAGE",
+							"description": "optional",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/countries/{$id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries",
+						"{$id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete country",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/countries/{$id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries",
+						"{$id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "YOUR_TOKEN",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/countries/{$id}/flag",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"countries",
+						"{$id}",
+						"flag"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
