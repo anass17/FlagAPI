@@ -111,8 +111,63 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Country $country) {
-        //
+    public function update(Request $request, $id) {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|max:30',
+            'capitale' => 'string|max:30',
+            'population' => 'integer',
+            'region' => 'string',
+            'flag' => 'file|mimes:jpg,png,webp|max:10240',
+            'language' => 'string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $filename = null;
+
+        if ($request->hasFile('flag')) {
+            if ($request->file('flag')->isValid()) {
+                $file = $request->file('flag');
+    
+                $filename = 'flag_' . time() . '.' . $file->getClientOriginalExtension();
+    
+                $file->storeAs('public/uploads', $filename);
+    
+            } else {
+                return response()->json([
+                    'message' => 'Flag image upload failed'
+                ], 404);
+            }
+        }
+
+        try{
+
+            $country = Country::find((int) $id);
+            if ($request -> name) {$country -> name = $request -> name;}
+            if ($request -> capitale) {$country -> capitale = $request -> capitale;}
+            if ($request -> population) {$country -> population = $request -> population;}
+            if ($request -> region) {$country -> region = $request -> region;}
+            if ($filename) {$country -> flag = $filename;}
+            if ($request -> language) {$country -> language = $request -> language;}
+            $country -> save();
+
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'could not save your changes',
+                'error' => $e -> getMessage(),
+            ], 201);
+        }
+
+
+        return response()->json([
+            'message' => 'Country Successfully Updated',
+        ], 200);
     }
 
     /**
@@ -124,5 +179,21 @@ class CountryController extends Controller
 
         return response()->json(['message' => 'successfully deleted'], 200);        
 
+    }
+
+    public function flag($id) {
+
+        $country = Country::find((int) $id);
+
+        // Get the full path of the image
+        $path = storage_path('app/private/public/uploads/' . $country -> flag);
+
+        // Check if the file exists
+        if (!file_exists($path)) {
+            abort(404); // File not found
+        }
+
+        // Return the image as a response
+        return response()->file($path);
     }
 }
