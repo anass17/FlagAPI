@@ -22,3 +22,4 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 // Country Routes
 
 Route::resource('countries', CountryController::class)->middleware('auth:sanctum');
+Route::get('/countries/{id}/flag', [CountryController::class, 'flag'])->middleware('auth:sanctum');
