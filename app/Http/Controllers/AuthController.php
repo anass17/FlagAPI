@@ -54,8 +54,6 @@ class AuthController extends Controller
             
             $token = $user->createToken('FlagAPI')->plainTextToken;
 
-            // Session::put('session_user_id', $user->id);
-
             return response()->json([
                 'token' => $token,
                 'user' => [
